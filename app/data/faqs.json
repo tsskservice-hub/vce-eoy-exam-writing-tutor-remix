@@ -1,0 +1,77 @@
+[
+  {
+    "category": "Name Guidelines",
+    "questions": [
+      {
+        "id": "faq_001",
+        "question": "Can I use my own name in the exam?",
+        "answer": "It is recommended to use a fictional name."
+      },
+      {
+        "id": "faq_002",
+        "question": "When writing a name, should I leave a space between the surname and the last name?",
+        "answer": "Yes, you should leave a space, and it is a good idea to write a middle dot (・) in that space."
+      },
+      {
+        "id": "faq_003",
+        "question": "Can the name be a Japanese name?",
+        "answer": "Yes, you can use a Japanese name."
+      },
+      {
+        "id": "faq_004",
+        "question": "Is it okay to write only the surname or only the given name?",
+        "answer": "Yes, writing just one of them should be fine."
+      }
+    ]
+  },
+  {
+    "category": "Word Count and Length",
+    "questions": [
+      {
+        "id": "faq_005",
+        "question": "What happens if I don't write 400 characters?",
+        "answer": "The examiners will still read it, but it will certainly result in a deduction. The exact amount of point deduction is not publicly disclosed."
+      },
+      {
+        "id": "faq_006",
+        "question": "What happens if I write 500 characters or more?",
+        "answer": "The examiners will read it, but writing more does not automatically lead to a higher score. Whether you write within the word limit or exceed it, superficial content will lead to deductions. What is desired is rich, substantive content within the word limit. To achieve this, you need to make full use of VCE grammar and kanji."
+      }
+    ]
+  },
+  {
+    "category": "Kanji Usage",
+    "questions": [
+      {
+        "id": "faq_007",
+        "question": "Does using a lot of kanji increase my score?",
+        "answer": "First and foremost, it is crucial that the kanji you write are error-free. Even if you write many kanji, incorrect ones defeat the purpose. Writing all possible vocabulary using mandatory VCE kanji is an important mindset for aiming for a high score."
+      },
+      {
+        "id": "faq_008",
+        "question": "Does writing kanji outside of the mandatory VCE list increase the score?",
+        "answer": "It might make a slightly positive impression, but the most important thing in your response is the overall content. Kanji are merely components that build it. If there is no content, your score will not increase."
+      }
+    ]
+  },
+  {
+    "category": "Text Types and Styles",
+    "questions": [
+      {
+        "id": "faq_009",
+        "question": "I am not good at plain forms. Can I use polite forms for all text types?",
+        "answer": "To conclude, there should be no problem using polite forms for all text types. While diaries and stories are often written in plain forms, there are Japanese people who use polite forms for them as well."
+      },
+      {
+        "id": "faq_010",
+        "question": "Which one is the easiest text type?",
+        "answer": "Articles, reports, and reviews are the ones you can practice and become quite good at writing. Since these frequently appear in school SACs, you might already be somewhat familiar with them. Moreover, it is no exaggeration to say these text types are almost identical, and they are easier to tackle because there are fewer structural formats to memorize."
+      },
+      {
+        "id": "faq_011",
+        "question": "Which one is the hardest text type?",
+        "answer": "Stories are likely the hardest because creativity is required. If you are an imaginative writer, you may try it, but stories generally require adjectives and adverbs to enrich the narrative, and mastering them is difficult even for native Japanese speakers."
+      }
+    ]
+  }
+]

@@ -4,8 +4,11 @@ import { createClient } from "@supabase/supabase-js";
 import type { MetaFunction } from "react-router";
 import TextTypeModal from "../components/TextTypeModal";
 import questionsData from "../data/questions.json";
+// 📝 モーダル用のテキストデータをインポート（ふりがな付きのJSONがあればそちらを指定してください）
+import textTypesData from "../data/texttypes.json";
 
 const questions = questionsData as any[];
+const modalData: { [key: string]: any } = textTypesData;
 
 export const meta: MetaFunction = () => {
   return [
@@ -22,157 +25,6 @@ const SUPABASE_ANON_KEY =
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   auth: { experimental: { passkey: true } },
 });
-
-const modalData: { [key: string]: any } = {
-  Article: {
-    title: "Article (記事・きじ)",
-    purpose:
-      "Articles are used to inform, persuade, or entertain readers through a structured publication format.",
-    structure: [
-      "Items you should include: Title, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Plain style in general, Polite style is also acceptable",
-    ],
-    sampleImage: "/article.pdf",
-  },
-  Email: {
-    title: "Email (Eメール)",
-    purpose:
-      "Emails are used to quickly convey a message, consultation, or advice to a specific recipient more casually or formally than a letter.",
-    structure: [
-      "Items you should include: Name of the recipient, Subject line, Main text, Last line, Name of the sender",
-      "Sentence style: Polite style, Plain style depending on the relationship",
-    ],
-    sampleImage: "/email.pdf",
-  },
-  Essay: {
-    title: "Essay (作文・さくぶん)",
-    purpose:
-      "Essays are used to present and logically argue your own thoughts or reflections on a given theme through structured paragraphs.",
-    structure: [
-      "Items you should include: Topic, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style or, Plain style",
-    ],
-    sampleImage: "/essay.pdf",
-  },
-  Journal: {
-    title: "Journal, Diary Entry (日記・にっき)",
-    purpose:
-      "Journals are used to personally record daily events, changes in mood, reflections, and future plans.",
-    structure: [
-      "Items you should include: Month, date, day of the week, Weather",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Plain style in general as you write to yourself",
-    ],
-    sampleImage: "/journal.pdf",
-  },
-  Message: {
-    title: "Message (伝言・メッセージ)",
-    purpose:
-      "Messages are used to leave brief, concise information or instructions for someone who is absent.",
-    structure: [
-      "Items you should include: Name of addressee, Content, Date and time, Name of addressor (fictional)",
-      "Sentence style: Polite style, Plain style depending on recipient",
-    ],
-  },
-  Account: {
-    title: "Personal Account (体験談・たいけんだん)",
-    purpose:
-      "Personal accounts are used to describe a personal experience, including challenges faced and the process of overcoming them.",
-    structure: [
-      "Items you should include: Title, Name of author (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style or, Plain style",
-    ],
-    sampleImage: "/personal account.pdf",
-  },
-  Letter: {
-    title: "Personal Letter (手紙・てがみ)",
-    purpose:
-      "Personal letters are used to share updates, express gratitude, or maintain personal connections with a recipient.",
-    structure: [
-      "Items you should include: Date, Starting line, Name of the addressee, Signing off at the end, Name of the sender",
-      "Content: Introduction, Body of the letter, Conclusion",
-      "Sentence style: Polite style, Plain style depending on recipient",
-    ],
-    sampleImage: "/letter.pdf",
-  },
-  Report: {
-    title: "Report - Research, Analysis (レポート)",
-    purpose:
-      "Reports are used to organize and present research findings, objective analyses, or facts clearly.",
-    structure: [
-      "Items you should include: Title, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style",
-    ],
-    sampleImage: "/report.pdf",
-  },
-  "Official Report": {
-    title: "Report - Official, Business (報告書・ほうこくしょ)",
-    purpose:
-      "Official reports are used to communicate factual investigation results or business activities within an organization.",
-    structure: [
-      "Items you should include: Topic / title, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style",
-    ],
-  },
-  Review: {
-    title: "Review (批評・ひひょう)",
-    purpose:
-      "Reviews are used to evaluate books, movies, products, or performances and provide an informed opinion to readers.",
-    structure: [
-      "Items you should include: Title, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style",
-    ],
-  },
-  Speech: {
-    title: "Speech Script（スピーチの原稿・スピーチのげんこう）",
-    purpose:
-      "Speeches are used to directly communicate opinions or information to a live audience.",
-    structure: [
-      "Items you should include: Title, Greeting（e.g. こんにちは。）, Introduction to the topic（e.g. ～について話したいと思います。）, Body of the speech, Closing expression（e.g. ありがとうございました。）",
-      "Sentence style: Polite style",
-    ],
-    sampleImage: "/speech script.pdf",
-  },
-  Story: {
-    title: "Story (物語・ものがたり)",
-    purpose:
-      "Stories are used to write imaginative narratives featuring characters, settings, and a dynamic plot.",
-    structure: [
-      "Items you should include: Title, Author's name (fictional), A clear plot and character development",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Plain style or, Polite style",
-    ],
-    sampleImage: "/story.pdf",
-  },
-  Summary: {
-    title: "Summary（まとめ）",
-    purpose:
-      "Summaries are used to concisely condense the main points and arguments of a source text or data.",
-    structure: [
-      "Items you should include: Topic, Author's name (fictional)",
-      "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style",
-    ],
-  },
-  Genkooyooshi: {
-    title: "Genkooyooshi Usage Guide",
-    purpose:
-      "This guide helps you check the correct formatting for titles, names, main text, and square usage on genkooyooshi.",
-    structure: [
-      "Title (Line 1): Leave 3 spaces at the beginning, then write the title",
-      "Name (Line 2): Write at the end, leaving the last square blank",
-      "Main Text:",
-      "Square Usage:",
-    ],
-    sampleImage: "/genkoyoshi.pdf",
-  },
-};
 
 // --- VCE Kanji & Grammar Highlight Checker Component ---
 function HighlightChecker() {
@@ -546,7 +398,7 @@ export default function Dashboard() {
       </div>
 
       {/* 💡 Text Type Instruction Banner */}
-      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6 text-lg text-emerald-800 flex items-center gap-3 shadow-sm">
+      <div id="text-type-instruction" className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6 text-lg text-emerald-800 flex items-center gap-3 shadow-sm">
         <span className="text-xl">💡</span>
         <span>
           Click on the green text type tag on each question to see what is
@@ -582,7 +434,7 @@ export default function Dashboard() {
               {q.english}
             </p>
 
-            {/* ふりがな付きの日本語をHTMLとして正しく表示（文字サイズ18〜20px指定） */}
+            {/* ふりがな付きの日本語をHTMLとして正しく表示 */}
             <div
               className="text-lg sm:text-[20px] text-slate-700 mb-4 border-l-4 border-slate-200 pl-4 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: q.japanese }}

@@ -151,7 +151,7 @@ export default function LoginPage() {
   return (
     <main className="max-w-md mx-auto px-4 py-12 font-sans">
       <h2 className="text-2xl font-bold text-center text-slate-800 mb-8">
-        📝 VCE Japanese AI Tutor
+        📝 VCE Japanese End of Year Exam Writing AI Tutor
       </h2>
 
       {/* 新規登録カード */}

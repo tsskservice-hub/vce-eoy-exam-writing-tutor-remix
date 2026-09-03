@@ -25,6 +25,50 @@ function katakanaToHiragana(str) {
   });
 }
 
+// 1つの文字列に対してルビを振る関数
+function addFuriganaToText(text, tokenizer) {
+  if (!text || typeof text !== 'string') return text;
+  
+  const tokens = tokenizer.tokenize(text);
+  let newText = '';
+
+  tokens.forEach(token => {
+    const surface = token.surface_form; 
+    const reading = katakanaToHiragana(token.reading); 
+
+    // VCEリスト外の漢字が含まれているかチェック
+    let hasNonVceKanji = false;
+    for (let i = 0; i < surface.length; i++) {
+      if (/[\u4e00-\u9faf]/.test(surface[i]) && !vceKanjiList.has(surface[i])) {
+        hasNonVceKanji = true;
+        break;
+      }
+    }
+
+    if (hasNonVceKanji && reading && surface !== reading) {
+      const matchOkuri = surface.match(/^(.+?)([\u3041-\u3096]+)$/);
+      
+      if (matchOkuri) {
+        const kPart = matchOkuri[1]; 
+        const oPart = matchOkuri[2]; 
+        
+        if (reading.endsWith(oPart)) {
+          const kReading = reading.slice(0, reading.length - oPart.length);
+          newText += `<ruby>${kPart}<rt>${kReading}</rt></ruby>${oPart}`;
+        } else {
+          newText += `<ruby>${surface}<rt>${reading}</rt></ruby>`;
+        }
+      } else {
+        newText += `<ruby>${surface}<rt>${reading}</rt></ruby>`;
+      }
+    } else {
+      newText += surface;
+    }
+  });
+
+  return newText;
+}
+
 // プロジェクトルートからの相対パスで辞書とJSONを指定
 kuromoji.builder({ dicPath: path.join(__dirname, '../node_modules/kuromoji/dict') }).build((err, tokenizer) => {
   if (err) {
@@ -32,64 +76,49 @@ kuromoji.builder({ dicPath: path.join(__dirname, '../node_modules/kuromoji/dict'
     return;
   }
 
-  // questions.json の配置場所（app/data/questions.json を想定）
-  const jsonPath = path.join(__dirname, '../app/data/questions.json');
+  // texttypes.json の配置場所
+  const jsonPath = path.join(__dirname, '../app/data/texttypes.json');
   
   if (!fs.existsSync(jsonPath)) {
     console.error(`エラー: ${jsonPath} が見つかりませんでした。`);
     return;
   }
 
-  const questions = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+  const textTypes = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
 
-  const updatedQuestions = questions.map(q => {
-    // 常に「元のきれいな日本語テキスト」をベースにするため japanese_original があればそれを使う
-    const baseText = q.japanese_original || q.japanese;
-    const tokens = tokenizer.tokenize(baseText);
-    let newJapanese = '';
+  // 各セクションのプロパティ（title, purpose, structureなど）を走査してルビを付与
+  const updatedTextTypes = {};
 
-    tokens.forEach(token => {
-      const surface = token.surface_form; 
-      const reading = katakanaToHiragana(token.reading); 
+  for (const [key, value] of Object.entries(textTypes)) {
+    const updatedItem = { ...value };
 
-      // VCEリスト外の漢字が含まれているかチェック
-      let hasNonVceKanji = false;
-      for (let i = 0; i < surface.length; i++) {
-        if (/[\u4e00-\u9faf]/.test(surface[i]) && !vceKanjiList.has(surface[i])) {
-          hasNonVceKanji = true;
-          break;
-        }
+    // title
+    if (updatedItem.title) {
+      const originalTitle = updatedItem.title_original || updatedItem.title;
+      updatedItem.title_original = originalTitle;
+      updatedItem.title = addFuriganaToText(originalTitle, tokenizer);
+    }
+
+    // purpose
+    if (updatedItem.purpose) {
+      const originalPurpose = updatedItem.purpose_original || updatedItem.purpose;
+      updatedItem.purpose_original = originalPurpose;
+      updatedItem.purpose = addFuriganaToText(originalPurpose, tokenizer);
+    }
+
+    // structure (配列の場合)
+    if (Array.isArray(updatedItem.structure)) {
+      if (!updatedItem.structure_original) {
+        updatedItem.structure_original = [...updatedItem.structure];
       }
+      updatedItem.structure = updatedItem.structure_original.map(item => 
+        addFuriganaToText(item, tokenizer)
+      );
+    }
 
-      if (hasNonVceKanji && reading && surface !== reading) {
-        let okuriganaPart = '';
-        const matchOkuri = surface.match(/^(.+?)([\u3041-\u3096]+)$/);
-        
-        if (matchOkuri) {
-          const kPart = matchOkuri[1]; 
-          const oPart = matchOkuri[2]; 
-          
-          if (reading.endsWith(oPart)) {
-            const kReading = reading.slice(0, reading.length - oPart.length);
-            newJapanese += `<ruby>${kPart}<rt>${kReading}</rt></ruby>${oPart}`;
-          } else {
-            newJapanese += `<ruby>${surface}<rt>${reading}</rt></ruby>`;
-          }
-        } else {
-          newJapanese += `<ruby>${surface}<rt>${reading}</rt></ruby>`;
-        }
-      } else {
-        newJapanese += surface;
-      }
-    });
+    updatedTextTypes[key] = updatedItem;
+  }
 
-    return {
-      ...q,
-      japanese_original: baseText,
-      japanese: newJapanese
-    };
-  });
-
-  fs.writeFileSync(jsonPath, JSON.stringify(updatedQuestions, null, 2), 'utf8');
-  console.log('✨ 漢字部分のみへのルビ振り＆更新が完了しました！');
+  fs.writeFileSync(jsonPath, JSON.stringify(updatedTextTypes, null, 2), 'utf8');
+  console.log('✨ texttypes.json の漢字部分へのルビ振り＆更新が完了しました！');
 });

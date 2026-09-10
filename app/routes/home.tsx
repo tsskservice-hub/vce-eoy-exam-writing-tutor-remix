@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => {
 };
 
 // Gumroad の商品URL（カスタムドメインまたはご自身のGumroad商品URLを設定）
-const GUMROAD_URL = "https://store.yourdomain.com/l/your-product-id";
+const GUMROAD_URL = "https://shop.jptutoraiyamato.com/l/your-product-id";
 
 // Supabase の接続情報
 const SUPABASE_URL = "https://ybquwzoreecxxbewjpdn.supabase.co";

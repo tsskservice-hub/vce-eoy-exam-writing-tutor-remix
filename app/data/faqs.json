@@ -65,12 +65,22 @@
       {
         "id": "faq_010",
         "question": "Which one is the easiest text type?",
-        "answer": "Articles, reports, and reviews are the ones you can practice and become quite good at writing. Since these frequently appear in school SACs, you might already be somewhat familiar with them. Moreover, it is no exaggeration to say these text types are almost identical, and they are easier to tackle because there are fewer structural formats to memorize."
+        "answer": "For students, **emails**, **letters**, **speeches**, and **articles** are generally easier choices. **Emails** and **letters** benefit from fixed formats like greetings and sign-offs, which help meet length requirements without needing extra body text. **Speeches** allow a natural, engaging tone using polite style（です、ます）, making it easier to connect with an audience. **Articles** are also manageable because they let you blend facts with personal insights creatively. Since these formats rely heavily on familiar phrasing and personal expression, you can write smoothly and manage the time limit much more comfortably under exam pressure."
       },
       {
         "id": "faq_011",
         "question": "Which one is the hardest text type?",
-        "answer": "Stories are likely the hardest because creativity is required. If you are an imaginative writer, you may try it, but stories generally require adjectives and adverbs to enrich the narrative, and mastering them is difficult even for native Japanese speakers."
+        "answer": "**Diary entries**, **essays**, **creative stories**, and **reports** are much more challenging. **Diary entries** can be difficult because reflecting on personal events naturally requires focusing on deep reflection and emotional expression rather than simple description. **Essays** demand strict academic structures and deep arguments under tight time limits. **Creative stories** require strong narrative imagination and plotting skills to avoid getting stuck. Finally, **reports** are the hardest because they require objective data, formal analysis, and logical proof rather than just personal opinions. Without pre-existing data or careful structural planning, these text types carry a high risk of running out of time."
+      }
+    ]
+  },
+  {
+    "category": "Understanding AI Yamato",
+    "questions": [
+      {
+        "id": "faq_012",
+        "question": "What should I do if AI Yamato misreads my handwriting or makes a transcription error?",
+        "answer": "Just like a human teacher reviewing handwritten work, AI Yamato may occasionally misinterpret a character or character count due to lighting, image angle, or handwriting style.\n\nIf you spot a misreading, don’t worry at all—treat it as an interactive learning opportunity! Simply point it out directly to AI Yamato in the chat (for example: \"Yamato-sensei, line 2 should be 『学校』, not 『学考』!\").\n\nAI Yamato will instantly acknowledge your correction, update its understanding, and adjust its guidance accordingly. Engaging in this two-way dialogue is a fantastic way to sharpen your own eye for detail as you prepare for the final exam!"
       }
     ]
   }

@@ -21,14 +21,14 @@
     "purpose": "Emails are used to quickly convey a message, consultation, or advice to a specific recipient more casually or formally than a letter.",
     "structure": [
       "Items you should include: Name of the recipient, Subject line, Main text, Last line, Name of the sender",
-      "Sentence style: Polite style, Plain style depending on the relationship"
+      "Sentence style: Polite style or, Plain style depending on the relationship"
     ],
     "sampleImage": "/email.pdf",
     "title_original": "Email (Eメール)",
     "purpose_original": "Emails are used to quickly convey a message, consultation, or advice to a specific recipient more casually or formally than a letter.",
     "structure_original": [
       "Items you should include: Name of the recipient, Subject line, Main text, Last line, Name of the sender",
-      "Sentence style: Polite style, Plain style depending on the relationship"
+      "Sentence style: Polite style or, Plain style depending on the relationship"
     ]
   },
   "Essay": {
@@ -70,13 +70,13 @@
     "purpose": "Messages are used to leave brief, concise information or instructions for someone who is absent.",
     "structure": [
       "Items you should include: Name of addressee, Content, Date and time, Name of addressor (fictional)",
-      "Sentence style: Polite style, Plain style depending on recipient"
+      "Sentence style: Polite style or, Plain style depending on recipient"
     ],
     "title_original": "Message (伝言、メッセージ)",
     "purpose_original": "Messages are used to leave brief, concise information or instructions for someone who is absent.",
     "structure_original": [
       "Items you should include: Name of addressee, Content, Date and time, Name of addressor (fictional)",
-      "Sentence style: Polite style, Plain style depending on recipient"
+      "Sentence style: Polite style or, Plain style depending on recipient"
     ]
   },
   "Account": {
@@ -102,7 +102,7 @@
     "structure": [
       "Items you should include: Date, Starting line, Name of the addressee, Signing off at the end, Name of the sender",
       "Content: Introduction, Body of the letter, Conclusion",
-      "Sentence style: Polite style, Plain style depending on recipient"
+      "Sentence style: Polite style or, Plain style depending on the relationship"
     ],
     "sampleImage": "/letter.pdf",
     "title_original": "Personal Letter (手紙)",
@@ -110,7 +110,7 @@
     "structure_original": [
       "Items you should include: Date, Starting line, Name of the addressee, Signing off at the end, Name of the sender",
       "Content: Introduction, Body of the letter, Conclusion",
-      "Sentence style: Polite style, Plain style depending on recipient"
+      "Sentence style: Polite style or, Plain style depending on the relationship"
     ]
   },
   "Report": {
@@ -119,7 +119,7 @@
     "structure": [
       "Items you should include: Title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ],
     "sampleImage": "/report.pdf",
     "title_original": "Report - Research, Analysis (レポート)",
@@ -127,7 +127,7 @@
     "structure_original": [
       "Items you should include: Title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ]
   },
   "Official Report": {
@@ -136,14 +136,14 @@
     "structure": [
       "Items you should include: Topic / title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ],
     "title_original": "Report - Official, Business (報告書)",
     "purpose_original": "Official reports are used to communicate factual investigation results or business activities within an organization.",
     "structure_original": [
       "Items you should include: Topic / title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ]
   },
   "Review": {
@@ -152,14 +152,14 @@
     "structure": [
       "Items you should include: Title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ],
     "title_original": "Review (批評)",
     "purpose_original": "Reviews are used to evaluate books, movies, products, or performances and provide an informed opinion to readers.",
     "structure_original": [
       "Items you should include: Title, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ]
   },
   "Speech": {
@@ -200,14 +200,14 @@
     "structure": [
       "Items you should include: Topic, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ],
     "title_original": "Summary（まとめ）",
     "purpose_original": "Summaries are used to concisely condense the main points and arguments of a source text or data.",
     "structure_original": [
       "Items you should include: Topic, Author's name (fictional)",
       "Content: Introduction, Body, Conclusion",
-      "Sentence style: Polite style, Plain style"
+      "Sentence style: Polite style or, Plain style"
     ]
   },
   "Genkooyooshi": {

@@ -31,6 +31,8 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* Gumroad Overlay スクリプト */}
+        <script src="https://gumroad.com/js/gumroad.js" async />
       </head>
       <body
         className="h-full min-h-screen text-slate-900 font-sans antialiased m-0"

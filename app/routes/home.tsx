@@ -5,10 +5,13 @@ import type { MetaFunction } from "react-router";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "ログイン / 新規登録 | VCE EOY Exam Writing Tutor" },
+    { title: "ログイン / 新規登録 | VCE EOY Exam Writing AI Tutor" },
     { name: "description", content: "Passkey認証による安全なログインと新規登録ポータル" },
   ];
 };
+
+// Gumroad の商品URL（カスタムドメインまたはご自身のGumroad商品URLを設定）
+const GUMROAD_URL = "https://store.yourdomain.com/l/your-product-id";
 
 // Supabase の接続情報
 const SUPABASE_URL = "https://ybquwzoreecxxbewjpdn.supabase.co";
@@ -153,6 +156,34 @@ export default function LoginPage() {
       <h2 className="text-2xl font-bold text-center text-slate-800 mb-8">
         📝 VCE Japanese End of Year Exam Writing AI Tutor
       </h2>
+
+      {/* Gumroad 購入カード */}
+      <div className="bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200 p-6 mb-6 rounded-2xl shadow-sm">
+        <h3 className="text-base font-bold text-rose-900 mt-0 mb-2 flex items-center gap-1.5">
+          🛒 Need Access? Purchase First
+        </h3>
+        <p className="text-xs text-rose-700 leading-relaxed mb-4">
+          If you have not purchased the app yet, buy access via Gumroad. Use the same email address when signing up below.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          {/* ポップアップ購入ボタン (Pattern 2) */}
+          <a
+            className="gumroad-button flex-1 py-2.5 px-4 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white text-center transition-all shadow-sm"
+            href={GUMROAD_URL}
+          >
+            Buy on Gumroad (Pop-up)
+          </a>
+          {/* 直接リンク (Pattern 1) */}
+          <a
+            href={GUMROAD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-2.5 px-3 rounded-lg text-xs font-semibold bg-white border border-rose-200 text-rose-700 hover:bg-rose-100 text-center transition-all"
+          >
+            Open in New Tab ↗
+          </a>
+        </div>
+      </div>
 
       {/* 新規登録カード */}
       <div className="bg-white border border-slate-200 p-6 mb-6 rounded-2xl shadow-sm">

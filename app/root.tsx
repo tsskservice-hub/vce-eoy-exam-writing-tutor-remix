@@ -11,6 +11,10 @@ import type { LinksFunction } from "react-router";
 import "./styles/tailwind.css";
 
 export const links: LinksFunction = () => [
+  // ファビコン（タブのアイコン）設定
+  { rel: "icon", type: "image/png", href: "/jptutoraiyamato.png" },
+  { rel: "apple-touch-icon", href: "/jptutoraiyamato.png" },
+
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

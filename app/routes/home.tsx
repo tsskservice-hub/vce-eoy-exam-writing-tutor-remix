@@ -144,7 +144,7 @@ export default function LoginPage() {
   if (pageLoading) {
     return (
       <div className="flex justify-center items-center h-screen bg-slate-50 text-slate-700 font-sans">
-        <h3 className="text-lg font-semibold animate-pulse">
+        <h3 className="text-2xl font-semibold animate-pulse">
           Loading JA AI Tutor portal... 🔒
         </h3>
       </div>
@@ -152,45 +152,38 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="max-w-md mx-auto px-4 py-12 font-sans">
-      <h2 className="text-2xl font-bold text-center text-slate-800 mb-8">
-        📝 VCE Japanese End of Year Exam Writing AI Tutor
+    <main className="max-w-lg mx-auto px-4 py-12 font-sans">
+      {/* メインタイトル */}
+      <h2 className="text-4xl font-bold text-center text-slate-800 mb-8">
+        📝 VCE Japanese EOY Exam Writing AI Tutor
       </h2>
 
-      {/* Gumroad 購入カード */}
-      <div className="bg-gradient-to-br from-rose-50 to-pink-50 border border-rose-200 p-6 mb-6 rounded-2xl shadow-sm">
-        <h3 className="text-base font-bold text-rose-900 mt-0 mb-2 flex items-center gap-1.5">
-          🛒 Need Access? Purchase First
-        </h3>
-        <p className="text-xs text-rose-700 leading-relaxed mb-4">
-          If you have not purchased the app yet, buy access via Gumroad. Use the same email address when signing up below.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-2.5">
-          {/* ポップアップ購入ボタン (Pattern 2) */}
-          <a
-            className="gumroad-button flex-1 py-2.5 px-4 rounded-lg text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white text-center transition-all shadow-sm"
-            href={GUMROAD_URL}
-          >
-            Buy on Gumroad (Pop-up)
-          </a>
-          {/* 直接リンク (Pattern 1) */}
-          <a
-            href={GUMROAD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="py-2.5 px-3 rounded-lg text-xs font-semibold bg-white border border-rose-200 text-rose-700 hover:bg-rose-100 text-center transition-all"
-          >
-            Open in New Tab ↗
-          </a>
-        </div>
-      </div>
+{/* 購入カード（1つの明確なボタンに集約） */}
+<div className="bg-gradient-to-br from-sky-50 to-blue-50 border border-sky-200 p-6 mb-6 rounded-2xl shadow-sm">
+  <h3 className="text-xl font-bold text-slate-900 mt-0 mb-3 flex items-center gap-2">
+    👋 New Here? Let’s Get You Access!
+  </h3>
+  <p className="text-base text-slate-900 leading-relaxed mb-5">
+    Ready to boost your Japanese writing? Grab your access pass first! Just remember to use the exact same email address when signing up below. 😊
+  </p>
+  
+  {/* ボタンを1つに絞ったシンプルな配置 */}
+  <a
+    href={GUMROAD_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full py-3 px-4 rounded-lg text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white text-center transition-all shadow-sm"
+  >
+    Get Access Pass ↗
+  </a>
+</div>
 
       {/* 新規登録カード */}
       <div className="bg-white border border-slate-200 p-6 mb-6 rounded-2xl shadow-sm">
-        <h3 className="text-base font-bold text-slate-900 mt-0 mb-2">
+        <h3 className="text-xl font-bold text-slate-900 mt-0 mb-3">
           Sign Up (First-time Users)
         </h3>
-        <p className="text-xs text-slate-600 leading-relaxed mb-4">
+        <p className="text-base text-slate-600 leading-relaxed mb-5">
           Enter the email address you used during purchase. The system will
           verify your registration, create an account, and guide you to secure
           biometric Passkey setup.
@@ -203,12 +196,12 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
             required
-            className="w-full px-3.5 py-2.5 mb-3 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 box-border"
+            className="w-full px-4 py-3 mb-4 border border-slate-300 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 box-border"
           />
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-2.5 px-4 rounded-lg text-sm font-bold transition-all border ${
+            className={`w-full py-3 px-4 rounded-lg text-lg font-bold transition-all border ${
               loading
                 ? "bg-slate-200 text-slate-500 border-slate-300 cursor-not-allowed"
                 : "bg-indigo-50 text-indigo-600 border-indigo-200 hover:bg-indigo-100 cursor-pointer"
@@ -221,10 +214,10 @@ export default function LoginPage() {
 
       {/* ログインカード */}
       <div className="bg-white border border-slate-200 p-6 mb-6 rounded-2xl shadow-sm">
-        <h3 className="text-base font-bold text-slate-900 mt-0 mb-2">
+        <h3 className="text-xl font-bold text-slate-900 mt-0 mb-3">
           Passkey Login (Registered Users)
         </h3>
-        <p className="text-xs text-slate-600 leading-relaxed mb-4">
+        <p className="text-base text-slate-600 leading-relaxed mb-5">
           If you have already registered a biometric passkey on this device,
           click the button below to sign in instantly without any password or
           verification codes.
@@ -232,7 +225,7 @@ export default function LoginPage() {
         <button
           onClick={handlePasskeyLogin}
           disabled={loading}
-          className={`w-full py-2.5 px-4 rounded-lg text-sm font-bold text-white transition-all shadow-sm ${
+          className={`w-full py-3 px-4 rounded-lg text-lg font-bold text-white transition-all shadow-sm ${
             loading
               ? "bg-slate-400 cursor-not-allowed"
               : "bg-blue-600 hover:bg-blue-700 cursor-pointer"
@@ -244,10 +237,10 @@ export default function LoginPage() {
 
       {/* システムログ */}
       <div className="mt-6">
-        <h4 className="text-xs font-semibold text-slate-500 mb-2">
+        <h4 className="text-sm font-semibold text-slate-500 mb-2">
           System Portal Log
         </h4>
-        <pre className="bg-slate-900 text-sky-400 p-3.5 rounded-lg text-xs overflow-x-auto m-0 border border-slate-800 font-mono">
+        <pre className="bg-slate-900 text-sky-400 p-4 rounded-lg text-sm overflow-x-auto m-0 border border-slate-800 font-mono">
           {logMessage}
         </pre>
       </div>

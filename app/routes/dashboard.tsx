@@ -237,6 +237,9 @@ export default function Dashboard() {
     const hasVisitedBefore = typeof window !== "undefined" && localStorage.getItem("vce_ai_tutor_visited") === "true";
 
     // 3. window.difyChatbotConfig の初期化（確定したメールアドレス・最新の選択問題・ニックネーム・リピーター判定をセット）
+    // 💡 user_id に userNickname を結合することで、ニックネーム変更後に同一問題を選択しても旧セッションが呼び出されるのを完全に回避します
+    const safeNickname = userNickname ? userNickname.replace(/[^a-zA-Z0-9_\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/g, "") : "user";
+    
     window.difyChatbotConfig = {
       token: 'rGZHq57acJlEcXgT',
       baseUrl: 'https://udify.app',
@@ -248,8 +251,10 @@ export default function Dashboard() {
         is_returning_user: hasVisitedBefore ? "true" : "false",
       },
       systemVariables: {
-        // 🔻 修正：sessionKey を追加して選択ボタンを押すごとにフレッシュなセッションとしてDifyに認識させる
-        user_id: selectedQuestion ? `${userEmail}_Q${selectedQuestion.id}_${sessionKey}` : userEmail,
+        // 🔻 修正：user_id に userEmail, QuestionID, safeNickname, sessionKey を全て結合し、旧履歴の意図しない復元をガード
+        user_id: selectedQuestion 
+          ? `${userEmail}_Q${selectedQuestion.id}_${safeNickname}_${sessionKey}` 
+          : `${userEmail}_idle_${sessionKey}`,
       },
       userVariables: {} // 👈 オミット時の型エラー・Dify内部クラッシュを防ぐために明示的に定義
     };
@@ -283,7 +288,6 @@ export default function Dashboard() {
       const sEl = document.getElementById("rGZHq57acJlEcXgT");
       if (sEl) sEl.remove();
     };
-  // 🔻 修正：依存配列に sessionKey を追加
   }, [loading, userEmail, userNickname, assignedQuestionText, sessionKey]);
 
   // 🚀 ログインセッションのチェックおよび profiles からのニックネーム取得
@@ -362,6 +366,9 @@ export default function Dashboard() {
       );
 
       if (error) throw error;
+      
+      // 🔻 修正：ニックネーム保存時にもタイムスタンプを即座に更新し、次回問題選択時のセッション再作成を確実にする
+      setSessionKey(Date.now());
       alert("Preferred name saved! AI Yamato will address you by your new name starting from your next practice session (when you select a new task)! ✨");
     } catch (error: any) {
       console.error("Error saving nickname:", error);
@@ -371,7 +378,22 @@ export default function Dashboard() {
     }
   };
 
+  // 🚀 ログアウト関数（Difyの残存キャッシュを破棄）
   const handleLogout = async () => {
+    if (typeof window !== "undefined") {
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (key && (key.includes("dify") || key.includes("chatbot") || key.includes("udify"))) {
+          localStorage.removeItem(key);
+        }
+      }
+      for (let i = sessionStorage.length - 1; i >= 0; i--) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes("dify") || key.includes("chatbot") || key.includes("udify"))) {
+          sessionStorage.removeItem(key);
+        }
+      }
+    }
     await supabaseClient.auth.signOut();
     navigate("/");
   };
@@ -735,7 +757,7 @@ export default function Dashboard() {
               <button
                 onClick={() => {
                   setSelectedQuestion(q);
-                  setSessionKey(Date.now()); // 👈 🔻 修正：ボタンクリックのたびにタイムスタンプを更新して新セッションを作成
+                  setSessionKey(Date.now()); // 👈 ボタンクリックのたびにタイムスタンプを更新して新セッションを作成
                   const banner = document.getElementById("active-ai-tutor-banner");
                   if (banner) {
                     banner.scrollIntoView({ behavior: "smooth", block: "start" });

@@ -194,6 +194,9 @@ export default function Dashboard() {
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const [isChatFullscreen, setIsChatFullscreen] = useState<boolean>(false);
 
+  // 🚀 セッションを常に最新化するためのタイムスタンプStateを追加
+  const [sessionKey, setSessionKey] = useState<number>(Date.now());
+
   // Difyに渡す選択された問題テキスト
   const assignedQuestionText = selectedQuestion 
     ? `Q${selectedQuestion.id}: ${selectedQuestion.english}` 
@@ -245,7 +248,8 @@ export default function Dashboard() {
         is_returning_user: hasVisitedBefore ? "true" : "false",
       },
       systemVariables: {
-        user_id: selectedQuestion ? `${userEmail}_Q${selectedQuestion.id}` : userEmail, // 👈 生徒のメール ＋ 選択問題ID でセッション混同を防止
+        // 🔻 修正：sessionKey を追加して選択ボタンを押すごとにフレッシュなセッションとしてDifyに認識させる
+        user_id: selectedQuestion ? `${userEmail}_Q${selectedQuestion.id}_${sessionKey}` : userEmail,
       },
       userVariables: {} // 👈 オミット時の型エラー・Dify内部クラッシュを防ぐために明示的に定義
     };
@@ -279,7 +283,8 @@ export default function Dashboard() {
       const sEl = document.getElementById("rGZHq57acJlEcXgT");
       if (sEl) sEl.remove();
     };
-  }, [loading, userEmail, userNickname, assignedQuestionText]);
+  // 🔻 修正：依存配列に sessionKey を追加
+  }, [loading, userEmail, userNickname, assignedQuestionText, sessionKey]);
 
   // 🚀 ログインセッションのチェックおよび profiles からのニックネーム取得
   useEffect(() => {
@@ -730,6 +735,7 @@ export default function Dashboard() {
               <button
                 onClick={() => {
                   setSelectedQuestion(q);
+                  setSessionKey(Date.now()); // 👈 🔻 修正：ボタンクリックのたびにタイムスタンプを更新して新セッションを作成
                   const banner = document.getElementById("active-ai-tutor-banner");
                   if (banner) {
                     banner.scrollIntoView({ behavior: "smooth", block: "start" });
